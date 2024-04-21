@@ -4,10 +4,12 @@ from income.exception import IncomeException
 from income.config.configuration import DataIngestionConfig
 from income.entity.artifact_entity import DataIngestionArtifact
 
-import tarfile
+#import tarfile
+import zipfile
 from six.moves import urllib
 import pandas as pd
 import numpy as np
+import shutil
 
 from sklearn.model_selection import StratifiedShuffleSplit
 
@@ -55,8 +57,10 @@ class DataIngestion:
             os.makedirs(raw_data_dir,exist_ok=True)
             
             logging.info(f"Extracting the tgz_file : [{tgz_file_path}] into the dir: [{raw_data_dir}]")
-            with tarfile.open(tgz_file_path) as income_tgz_file_obj:
-                income_tgz_file_obj.extractall(path=raw_data_dir) 
+            """with tarfile.open(tgz_file_path) as income_tgz_file_obj:
+                income_tgz_file_obj.extractall(path=raw_data_dir)"""
+            
+            shutil.copy(tgz_file_path, raw_data_dir)
 
             logging.info(f"Extraction completed successfully")
 
@@ -72,7 +76,7 @@ class DataIngestion:
             income_file_path = os.path.join(raw_data_dir,file_name)
             income_data_frame = pd.read_csv(income_file_path)
             income_data_frame["age_cat"]=pd.cut(income_data_frame['age'],bins=[15,30,45,60,75,np.inf],
-                                                labels=[1,2,3,4,5,6])
+                                                labels=[1,2,3,4,5])
             
             strat_train_set = None
             strat_test_set = None
