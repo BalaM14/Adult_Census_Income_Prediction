@@ -24,31 +24,31 @@ class Pipeline:
         except Exception as e:
             raise IncomeException(e,sys) from e
         
-    def start_data_validation(self) -> DataValidationArtifact:
+    def start_data_validation(self):
         try:
             pass
         except Exception as e:
             raise IncomeException(e,sys) from e
         
-    def start_data_transformation(self) -> DataTransformationArtifact:
+    def start_data_transformation(self):
         try:
             pass
         except Exception as e:
             raise IncomeException(e,sys) from e
 
-    def start_model_training(self) -> ModelTrainingArtifact:
+    def start_model_training(self):
         try:
             pass
         except Exception as e:
             raise IncomeException(e,sys) from e
         
-    def start_model_evaluation(self) -> ModelEvaluationArtifact:
+    def start_model_evaluation(self):
         try:
             pass
         except Exception as e:
             raise IncomeException(e,sys) from e
         
-    def start_model_pusher(self) -> ModelPusherArtifact:
+    def start_model_pusher(self):
         try:
             pass
         except Exception as e:
@@ -57,7 +57,7 @@ class Pipeline:
 
     def run_pipeline(self):
         try:
-            #Dataa Ingestion Piipeline
+            #Data Ingestion Piipeline
             data_inegstion_artifact = self.start_data_ingestion()
         except Exception as e:
             raise IncomeException(e,sys) from e
