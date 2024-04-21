@@ -82,7 +82,7 @@ class DataIngestion:
             strat_test_set = None
 
             split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
-            
+            logging.info(f"Splitting data into train & test data")
             for train_index, test_index in split.split(income_data_frame,income_data_frame['age_cat']):
                 strat_train_set = income_data_frame.loc[train_index].drop("age_cat",axis=1)
                 strat_test_set = income_data_frame.loc[test_index].drop("age_cat",axis=1)

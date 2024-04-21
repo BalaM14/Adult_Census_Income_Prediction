@@ -17,6 +17,7 @@ class Pipeline:
     
     def start_data_ingestion(self) -> DataIngestionArtifact:
         try:
+            raise Exception("Bala Exception")
             data_ingestion = DataIngestion(data_ingestion_config=self.config.get_data_ingestion_config())
 
             return data_ingestion.initiate_data_ingestion()
