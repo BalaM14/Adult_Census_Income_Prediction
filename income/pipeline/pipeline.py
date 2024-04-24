@@ -2,6 +2,8 @@ from income.config.configuration import Configuration
 from income.entity.config_entity import DataIngestionConfig
 from income.entity.artifact_entity import DataIngestionArtifact
 from income.component.data_ingestion import DataIngestion
+from income.component.data_validation import DataValidation
+from income.entity.artifact_entity import DataValidationArtifact
 from income.logger import logging
 from income.exception import IncomeException
 import os,sys
@@ -17,7 +19,6 @@ class Pipeline:
     
     def start_data_ingestion(self) -> DataIngestionArtifact:
         try:
-            raise Exception("Bala Exception")
             data_ingestion = DataIngestion(data_ingestion_config=self.config.get_data_ingestion_config())
 
             return data_ingestion.initiate_data_ingestion()
@@ -25,9 +26,12 @@ class Pipeline:
         except Exception as e:
             raise IncomeException(e,sys) from e
         
-    def start_data_validation(self):
+    def start_data_validation(self,data_ingestion_artifact: DataIngestionArtifact) -> DataValidationArtifact:
         try:
-            pass
+            data_validation = DataValidation(data_validation_config=self.config.get_data_validation_config(),
+                                             data_ingestion_artifact=data_ingestion_artifact)
+
+            return data_validation.initiate_data_validation()
         except Exception as e:
             raise IncomeException(e,sys) from e
         
@@ -60,5 +64,6 @@ class Pipeline:
         try:
             #Data Ingestion Piipeline
             data_inegstion_artifact = self.start_data_ingestion()
+            data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_inegstion_artifact)
         except Exception as e:
             raise IncomeException(e,sys) from e
