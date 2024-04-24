@@ -4,4 +4,5 @@ pandas
 numpy
 PyYaml
 scikit-learn
+evidently==0.2.8
 -e .
