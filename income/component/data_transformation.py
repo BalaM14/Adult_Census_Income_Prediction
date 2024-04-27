@@ -36,8 +36,8 @@ class DataTransformation:
         This function converts the data types as per the schema file values.
         If it is not ablee to convert then it will rasie an exception'''
         try:
-            datset_schema = read_yaml_file(schema_file_path)
-            schema = datset_schema[DATASET_SCHEMA_COLUMNS_KEY]
+            dataset_schema = read_yaml_file(schema_file_path)
+            schema = dataset_schema[DATASET_SCHEMA_COLUMNS_KEY]
             
             dataframe = pd.read_csv(file_path)
             
@@ -64,7 +64,6 @@ class DataTransformation:
             numerical_columns = dataset_schema[NUMERICAL_COLUMN_KEY]
             categorical_columns = dataset_schema[CATEGORICAL_COLUMN_KEY]
 
-
             num_pipeline = Pipeline(steps=[
                 ('imputer', SimpleImputer(strategy="median")),
                 ('scaler', StandardScaler())
@@ -73,9 +72,11 @@ class DataTransformation:
 
             cat_pipeline = Pipeline(steps=[
                  ('impute', SimpleImputer(strategy="most_frequent")),
-                 ('one_hot_encoder', OneHotEncoder())
+                 ('one_hot_encoder', OneHotEncoder(sparse_output=False,handle_unknown='ignore')),
+                 ('scaler', StandardScaler(with_mean=False))
             ]
             )
+
 
             logging.info(f"Categorical columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
@@ -112,10 +113,10 @@ class DataTransformation:
 
             logging.info(f"Splitting input and target feature from training and testing dataframe.")
             input_feature_train_df = train_df.drop(columns=[target_column_name],axis=1)
-            target_feature_train_df = train_df[target_column_name]
+            target_feature_train_df = train_df[target_column_name].map({' <=50K':0 ,' >50K':1})
 
             input_feature_test_df = test_df.drop(columns=[target_column_name],axis=1)
-            target_feature_test_df = test_df[target_column_name]
+            target_feature_test_df = test_df[target_column_name].map({' <=50K':0 ,' >50K':1})
 
             #For training we need to use fit_tramsform & for testing we use only the transform
             logging.info(f"Applying preprocessing object on training dataframe and testing dataframe")
@@ -123,8 +124,8 @@ class DataTransformation:
             input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
 
 
-            train_arr = np.c_[input_feature_train_arr.toarray(), np.array(target_feature_train_df)]
-            test_arr = np.c_[input_feature_test_arr.toarray(),np.array(target_feature_test_df)]
+            train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
+            test_arr = np.c_[input_feature_test_arr,np.array(target_feature_test_df)]
 
             transformed_train_dir = self.data_transformation_config.transformed_train_dir
             transformed_test_dir = self.data_transformation_config.transformed_test_dir
