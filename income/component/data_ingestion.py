@@ -123,4 +123,4 @@ class DataIngestion:
             raise IncomeException(e,sys) from e
         
     def __del__(self) -> None:
-        logging.info(f"{'='*20}Data Ingestion log Completed. {'='*20}")
+        logging.info(f"{'='*20}Data Ingestion log Completed. {'='*20} \n\n")

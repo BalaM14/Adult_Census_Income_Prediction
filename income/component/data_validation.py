@@ -182,4 +182,4 @@ class DataValidation:
 
 
     def __del__(self) -> None:
-        logging.info(f"{'='*20}Data Validation log Completed. {'='*20}")
+        logging.info(f"{'='*20}Data Validation log Completed. {'='*20} \n\n")

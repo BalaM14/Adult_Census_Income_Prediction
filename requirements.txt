@@ -1,8 +1,9 @@
 Flask
 gunicorn
 pandas
-numpy
+numpy==1.26
 PyYaml
 scikit-learn
 evidently==0.2.8
+dill
 -e .

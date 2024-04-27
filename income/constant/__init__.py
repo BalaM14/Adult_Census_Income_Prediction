@@ -60,3 +60,11 @@ MODEL_EVALUATION_FILE_NAME="model_evaluation_file_name"
 MODEL_PUSHER_CONFIG_KEY="model_pusher_config"
 MODEL_PUSHER_ARTIFACT_DIR="model_pusher"
 MODEL_PUSHER_MODEL_EXPORT_DIR="model_export_dir"
+
+
+#Schema Constants
+NUMERICAL_COLUMN_KEY = "numerical_columns"
+CATEGORICAL_COLUMN_KEY = "categorical_columns"
+TARGET_COLUMN_KEY = "target_column"
+DATASET_SCHEMA_COLUMNS_KEY=  "columns"
+DATASET_DOMAIN_VALUE_KEY ="domain_value"

@@ -75,7 +75,7 @@ class Configuration:
             preprocessed_object_filed_path = os.path.join(preprocessing_dir,data_transformation_config[DATA_TRANSFORMATION_PREPROCESSED_OBJECT_FILE_NAME])
 
             data_transformation_config = DataTransformationConfig(transformed_train_dir=transformed_train_dir,
-                                                                  tramsformed_test_dir=transformed_test_dir,
+                                                                  transformed_test_dir=transformed_test_dir,
                                                                   preprocessed_object_file_path=preprocessed_object_filed_path)
             
             logging.info(f"Data Transformation Config: {data_transformation_config}")

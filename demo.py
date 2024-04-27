@@ -12,6 +12,8 @@ def main():
         pipeline.run_pipeline()
         #data_validation_config = Configuration().get_data_validation_config()
         #print(data_validation_config)
+        #data_transformation_conffig = Configuration().get_data_transformation_config()
+        #print(data_transformation_conffig)
     except Exception as e:
         logging.error(f"{e}")
         raise IncomeException(e,sys)
