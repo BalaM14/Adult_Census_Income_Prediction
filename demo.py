@@ -8,12 +8,14 @@ from income.config.configuration import Configuration
 
 def main():
     try:
-        pipeline = Pipeline()
-        pipeline.run_pipeline()
+        #pipeline = Pipeline()
+        #pipeline.run_pipeline()
         #data_validation_config = Configuration().get_data_validation_config()
         #print(data_validation_config)
-        #data_transformation_conffig = Configuration().get_data_transformation_config()
+        #data_transformation_config = Configuration().get_data_transformation_config()
         #print(data_transformation_conffig)
+        model_trainer_config = Configuration().get_model_trainer_config()
+        print(model_trainer_config)
     except Exception as e:
         logging.error(f"{e}")
         raise IncomeException(e,sys)
