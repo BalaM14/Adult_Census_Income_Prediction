@@ -68,3 +68,8 @@ CATEGORICAL_COLUMN_KEY = "categorical_columns"
 TARGET_COLUMN_KEY = "target_column"
 DATASET_SCHEMA_COLUMNS_KEY=  "columns"
 DATASET_DOMAIN_VALUE_KEY ="domain_value"
+
+#Model component Constants
+BEST_MODEL_KEY = "best_model"
+MODEL_PATH_KEY = "model_path"
+HISTORY_KEY = "history"

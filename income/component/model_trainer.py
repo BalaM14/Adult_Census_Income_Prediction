@@ -108,4 +108,4 @@ class ModelTrainer:
         
     
     def __del__(self):
-        logging.info(f"{'=='*30} Model Trainer log completed. {'=='*30}")
+        logging.info(f"{'=='*30} Model Trainer log completed. {'=='*30} \n\n")

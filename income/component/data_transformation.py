@@ -6,7 +6,7 @@ from income.exception import IncomeException
 import os,sys
 import numpy as np
 import pandas as pd
-from income.util.util import read_yaml_file, save_numpy_array_data, save_object
+from income.util.util import read_yaml_file, save_numpy_array_data, save_object,load_data
 from income.constant import *
 
 
@@ -29,32 +29,7 @@ class DataTransformation:
         
         except Exception as e:
             raise IncomeException(e,sys) from e
-    
-    @staticmethod
-    def load_data(file_path :str, schema_file_path) -> pd.DataFrame:
-        '''
-        This function converts the data types as per the schema file values.
-        If it is not ablee to convert then it will rasie an exception'''
-        try:
-            dataset_schema = read_yaml_file(schema_file_path)
-            schema = dataset_schema[DATASET_SCHEMA_COLUMNS_KEY]
-            
-            dataframe = pd.read_csv(file_path)
-            
-            error_messgae = ""
-
-            for column in dataframe.columns:
-                if column in list(schema.keys()):
-                    dataframe[column].astype(schema[column])
-                else:
-                    error_messgae = f"{error_messgae} \nColumn: [{column}] is not in the schema."
-            if len(error_messgae) > 0:
-                raise Exception(error_messgae)
-            return dataframe
-        
-        except Exception as e:
-            raise IncomeException(e,sys) from e
-        
+                
     
     def get_data_transformer_object(self) -> ColumnTransformer:
         try:
@@ -104,8 +79,8 @@ class DataTransformation:
             schema_file_path = self.data_validation_artifact.schema_file_path
 
             logging.info(f"Loading training and test data as pandas dataframe.")
-            train_df = self.load_data(train_file_path,schema_file_path=schema_file_path)
-            test_df = self.load_data(test_file_path,schema_file_path=schema_file_path)
+            train_df = load_data(train_file_path,schema_file_path=schema_file_path)
+            test_df = load_data(test_file_path,schema_file_path=schema_file_path)
 
             schema = read_yaml_file(file_path=schema_file_path)
 
