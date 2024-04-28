@@ -13,9 +13,8 @@ model_selection:
     search_param_grid:
       min_samples_leaf:
       - 6
-      - 8
   module_1:
-    class: RandomForestRegressor
+    class: RandomForestClassifier
     module: sklearn.ensemble
     params:
       n_estimators: 40
@@ -23,7 +22,5 @@ model_selection:
     search_param_grid:
       min_samples_leaf:
       - 6
-      - 8
       n_estimators:
       - 50
-      - 100

@@ -2,10 +2,12 @@ from income.config.configuration import Configuration
 from income.component.data_ingestion import DataIngestion
 from income.component.data_validation import DataValidation
 from income.component.data_transformation import DataTransformation
+from income.component.model_trainer import ModelTrainer
 
 from income.entity.artifact_entity import DataIngestionArtifact
 from income.entity.artifact_entity import DataValidationArtifact
 from income.entity.artifact_entity import DataTransformationArtifact
+from income.entity.artifact_entity import ModelTrainerArtifact
 from income.logger import logging
 from income.exception import IncomeException
 import os,sys
@@ -54,9 +56,12 @@ class Pipeline:
         except Exception as e:
             raise IncomeException(e,sys) from e
 
-    def start_model_training(self):
+    def start_model_training(self,data_transformation_artifact:DataTransformationArtifact) -> ModelTrainerArtifact:
         try:
-            pass
+            model_trainer = ModelTrainer(model_trainer_config=self.config.get_model_trainer_config(),
+                                         data_transformation_artifact=data_transformation_artifact)
+            
+            return model_trainer.initiate_model_trainer()
         except Exception as e:
             raise IncomeException(e,sys) from e
         
@@ -82,6 +87,9 @@ class Pipeline:
                                                 data_ingestion_artifact=data_inegstion_artifact,
                                                 data_validation_artifact=data_validation_artifact
                                                 )
+            model_trainer_artifact = self.start_model_training(
+                                                data_transformation_artifact=data_transformation_artifact
+                                                ) 
             
         except Exception as e:
             raise IncomeException(e,sys) from e
