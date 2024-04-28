@@ -4,12 +4,14 @@ from income.component.data_validation import DataValidation
 from income.component.data_transformation import DataTransformation
 from income.component.model_trainer import ModelTrainer
 from income.component.model_evaluation import ModelEvaluation
+from income.component.model_pusher import ModelPusher
 
 from income.entity.artifact_entity import DataIngestionArtifact
 from income.entity.artifact_entity import DataValidationArtifact
 from income.entity.artifact_entity import DataTransformationArtifact
 from income.entity.artifact_entity import ModelTrainerArtifact
 from income.entity.artifact_entity import ModelEvaluationArtifact
+from income.entity.artifact_entity import ModelPusherArtifact
 from income.logger import logging
 from income.exception import IncomeException
 import os,sys
@@ -79,9 +81,11 @@ class Pipeline:
         except Exception as e:
             raise IncomeException(e,sys) from e
         
-    def start_model_pusher(self):
+    def start_model_pusher(self, model_evaluation_artifact: ModelEvaluationArtifact) -> ModelPusherArtifact:
         try:
-            pass
+            model_pusher = ModelPusher(model_pusher_config=self.config.get_model_pusher_config(),
+                                       model_evaluation_artifact=model_evaluation_artifact)
+            return model_pusher.initiate_model_pusher()
         except Exception as e:
             raise IncomeException(e,sys) from e
         
@@ -101,6 +105,7 @@ class Pipeline:
             model_evaluation_artifact = self.start_model_evaluation(data_ingestion_artifact=data_inegstion_artifact,
                                                                     data_validation_artifact=data_validation_artifact,
                                                                     model_trainer_artifact=model_trainer_artifact)
-            
+            model_pusher_artifact = self.start_model_pusher(model_evaluation_artifact=model_evaluation_artifact)
+
         except Exception as e:
             raise IncomeException(e,sys) from e
