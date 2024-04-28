@@ -128,7 +128,7 @@ class Configuration:
             model_pusher_artifact_dir = os.path.join(artifact_dir,MODEL_PUSHER_ARTIFACT_DIR,self.time_stamp)
 
             model_pusher_config = self.config_info[MODEL_PUSHER_CONFIG_KEY]
-            model_export_dir = os.path.join(artifact_dir,model_pusher_config[MODEL_PUSHER_MODEL_EXPORT_DIR])
+            model_export_dir = os.path.join(ROOT_DIR,model_pusher_config[MODEL_PUSHER_MODEL_EXPORT_DIR],self.time_stamp)
 
             model_pusher_config = ModelPusherConfig(export_dir_path=model_export_dir)
             logging.info(f"Model Pusher Config: {model_pusher_config}")
