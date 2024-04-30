@@ -8,8 +8,11 @@ from income.config.configuration import Configuration
 
 def main():
     try:
-        pipeline = Pipeline()
-        pipeline.run_pipeline()
+        config_path = os.path.join("config","config.yaml")
+        pipeline = Pipeline(Configuration(config_file_path=config_path))
+        #pipeline.run_pipeline()
+        pipeline.start()
+        logging.info("main function execution completed")
         #data_validation_config = Configuration().get_data_validation_config()
         #print(data_validation_config)
         #data_transformation_config = Configuration().get_data_transformation_config()

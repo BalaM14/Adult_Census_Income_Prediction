@@ -16,7 +16,7 @@ class ModelEvaluation:
                         data_validation_artifact: DataValidationArtifact,
                         model_trainer_artifact: ModelTrainerArtifact) :
         try:
-            logging.info(f"{'=='*30} Model Evaluation Log Started {'=='*30}")
+            logging.info(f"{'=='*20} Model Evaluation Log Started {'=='*20}")
             self.model_evaluation_config = model_evaluation_config
             self.data_ingestion_artifact = data_ingestion_artifact
             self.data_validation_artifact = data_validation_artifact
@@ -153,4 +153,4 @@ class ModelEvaluation:
             raise IncomeException(e,sys) from e
         
     def __del__(self):
-        logging.info(f"{'=='*30} Model Evaluation log completed {'=='*30}")    
+        logging.info(f"{'=='*20} Model Evaluation log completed {'=='*20} \n\n")    

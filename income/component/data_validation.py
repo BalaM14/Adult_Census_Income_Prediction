@@ -14,12 +14,13 @@ from evidently.model_profile.sections import DataDriftProfileSection
 from evidently.dashboard import Dashboard
 from evidently.dashboard.tabs import DataDriftTab
 import json
+import IPython
 
 class DataValidation:
 
     def __init__(self, data_validation_config:DataValidationConfig,data_ingestion_artifact:DataIngestionArtifact):
         try:
-            logging.info(f"{'='*20}Data Validation log started. {'='*20}")
+            logging.info(f"{'=='*20}Data Validation log started. {'=='*20}")
             self.data_validation_config = data_validation_config
             self.data_ingestion_artifact = data_ingestion_artifact
         except Exception as e:
@@ -182,4 +183,4 @@ class DataValidation:
 
 
     def __del__(self) -> None:
-        logging.info(f"{'='*20}Data Validation log Completed. {'='*20} \n\n")
+        logging.info(f"{'=='*20}Data Validation log Completed. {'=='*20} \n\n")

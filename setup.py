@@ -2,7 +2,7 @@ from setuptools import setup,find_packages
 from typing import List
 
 PROJECT_NAME="income_predictor"
-VERSION="0.0.3"
+VERSION="0.0.4"
 AUTHOR="Bala Murugan"
 DESCRIPTION="This is a Incomee Predictor ML project"
 

@@ -73,3 +73,7 @@ DATASET_DOMAIN_VALUE_KEY ="domain_value"
 BEST_MODEL_KEY = "best_model"
 MODEL_PATH_KEY = "model_path"
 HISTORY_KEY = "history"
+
+#Experiment Variable Constants
+EXPERIMENT_DIR="experiment"
+EXPERIMENT_FILE_NAME="experiment.csv"

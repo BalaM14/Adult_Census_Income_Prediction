@@ -40,7 +40,7 @@ class ModelTrainer:
 
     def __init__(self, model_trainer_config: ModelTrainerConfig, data_transformation_artifact: DataTransformationArtifact):
         try:
-            logging.info(f"{'==' * 30}Model trainer log started.{'==' * 30} ")
+            logging.info(f"{'==' * 20}Model trainer log started.{'==' * 20} ")
             self.model_trainer_config = model_trainer_config
             self.data_transformation_artifact = data_transformation_artifact
         except Exception as e:
@@ -108,4 +108,4 @@ class ModelTrainer:
         
     
     def __del__(self):
-        logging.info(f"{'=='*30} Model Trainer log completed. {'=='*30} \n\n")
+        logging.info(f"{'=='*20} Model Trainer log completed. {'=='*20} \n\n")
