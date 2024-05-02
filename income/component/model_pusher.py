@@ -42,7 +42,7 @@ class ModelPusher:
         except Exception as e:
             raise IncomeException(e,sys) from e
         
-    def initiate_model_pusher(self):
+    def initiate_model_pusher(self) -> ModelPusherArtifact:
         try:
             return self.export_model()
         except Exception as e:

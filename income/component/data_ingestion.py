@@ -75,6 +75,7 @@ class DataIngestion:
 
             income_file_path = os.path.join(raw_data_dir,file_name)
             income_data_frame = pd.read_csv(income_file_path)
+            income_data_frame.columns = income_data_frame.columns.str.replace("-","_")
             income_data_frame["age_cat"]=pd.cut(income_data_frame['age'],bins=[15,30,45,60,75,np.inf],
                                                 labels=[1,2,3,4,5])
             

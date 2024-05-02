@@ -93,7 +93,7 @@ def load_object(file_path: str):
 def load_data(file_path :str, schema_file_path) -> pd.DataFrame:
     '''
     This function converts the data types as per the schema file values.
-    If it is not ablee to convert then it will rasie an exception'''
+    If it is not able to convert then it will rasie an exception'''
     try:
         dataset_schema = read_yaml_file(schema_file_path)
         schema = dataset_schema[DATASET_SCHEMA_COLUMNS_KEY]

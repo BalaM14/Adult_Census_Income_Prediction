@@ -25,6 +25,7 @@ class DataValidation:
             self.data_ingestion_artifact = data_ingestion_artifact
         except Exception as e:
             raise IncomeException(e,sys) from e
+    
         
     def is_train_test_file_exists(self) -> bool:
         try:
@@ -53,7 +54,8 @@ class DataValidation:
         
         except Exception as e:
             raise IncomeException(e,sys) from e
-        
+
+
     def get_train_test_df(self):
         try:
             train_file_path = self.data_ingestion_artifact.train_file_path
@@ -65,7 +67,8 @@ class DataValidation:
             return train_df,test_df
         except Exception as e:
             raise IncomeException(e,sys) from e
-        
+
+
     def vaidate_datatset_schema(self) -> bool:
         try:
             validation_status = False
@@ -113,6 +116,7 @@ class DataValidation:
         except Exception as e:
             raise IncomeException(e,sys) from e
     
+
     def get_and_save_data_drift_report(self):
         try:
             profile = Profile(sections=[DataDriftProfileSection()])
@@ -132,7 +136,6 @@ class DataValidation:
 
         except Exception as e:
             raise IncomeException(e,sys) from e
-        
 
 
     def save_data_drift_report_page(self):
@@ -151,7 +154,8 @@ class DataValidation:
 
         except Exception as e:
             raise IncomeException(e,sys) from e
-        
+
+
     def is_data_drift_found(self) -> bool:
         try:
             report = self.get_and_save_data_drift_report()

@@ -9,7 +9,7 @@ from income.logger import logging
 
 class Configuration:
 
-    def __init__(self,config_file_path:str=CONFG_FILE_PATH, current_time_stamp:str=CURRENT_TIME_STAMP) -> None:
+    def __init__(self,config_file_path:str=CONFG_FILE_PATH, current_time_stamp:str=get_current_time_stamp()) -> None:
         try:
             self.config_info = read_yaml_file(file_path=config_file_path)
             self.training_pipeline_config = self.get_training_pipeline_config()
@@ -124,11 +124,9 @@ class Configuration:
 
     def get_model_pusher_config(self) -> ModelPusherConfig:
         try:
-            artifact_dir = self.training_pipeline_config.artifact_dir
-            model_pusher_artifact_dir = os.path.join(artifact_dir,MODEL_PUSHER_ARTIFACT_DIR,self.time_stamp)
-
+            time_stamp = f"{datetime.now().strftime('%Y%m%d%H%M%S')}"
             model_pusher_config = self.config_info[MODEL_PUSHER_CONFIG_KEY]
-            model_export_dir = os.path.join(ROOT_DIR,model_pusher_config[MODEL_PUSHER_MODEL_EXPORT_DIR],self.time_stamp)
+            model_export_dir = os.path.join(ROOT_DIR,model_pusher_config[MODEL_PUSHER_MODEL_EXPORT_DIR],time_stamp)
 
             model_pusher_config = ModelPusherConfig(export_dir_path=model_export_dir)
             logging.info(f"Model Pusher Config: {model_pusher_config}")

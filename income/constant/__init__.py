@@ -6,8 +6,8 @@ CONFIG_DIR = "config"
 CONFIG_FILE_NAME = "config.yaml"
 CONFG_FILE_PATH = os.path.join(ROOT_DIR,CONFIG_DIR,CONFIG_FILE_NAME)
 
-
-CURRENT_TIME_STAMP = f"{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
+def get_current_time_stamp():
+    return f"{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
 
 
 #Training Pipeline related variablee
@@ -58,7 +58,6 @@ MODEL_EVALUATION_FILE_NAME="model_evaluation_file_name"
 
 #Model Pusher related variable
 MODEL_PUSHER_CONFIG_KEY="model_pusher_config"
-MODEL_PUSHER_ARTIFACT_DIR="model_pusher"
 MODEL_PUSHER_MODEL_EXPORT_DIR="model_export_dir"
 
 
@@ -68,6 +67,14 @@ CATEGORICAL_COLUMN_KEY = "categorical_columns"
 TARGET_COLUMN_KEY = "target_column"
 DATASET_SCHEMA_COLUMNS_KEY=  "columns"
 DATASET_DOMAIN_VALUE_KEY ="domain_value"
+
+#Model factory constant variable
+GRID_SEARCH_KEY = 'grid_search'
+MODULE_KEY = 'module'
+CLASS_KEY = 'class'
+PARAM_KEY = 'params'
+MODEL_SELECTION_KEY = 'model_selection'
+SEARCH_PARAM_GRID_KEY = "search_param_grid"
 
 #Model component Constants
 BEST_MODEL_KEY = "best_model"

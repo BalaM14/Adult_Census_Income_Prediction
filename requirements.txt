@@ -6,4 +6,5 @@ PyYaml
 scikit-learn
 evidently==0.2.8
 dill
+matplotlib
 -e .

@@ -46,7 +46,8 @@ class ModelEvaluation:
 
         except Exception as e:
             raise IncomeException(e,sys) from e
-        
+
+
     def update_evaluation_report(self,model_evaluation_artifact:ModelEvaluationArtifact ):
         try:
             eval_file_path = self.model_evaluation_config.model_evaluation_file_path
@@ -81,7 +82,7 @@ class ModelEvaluation:
             raise IncomeException(e,sys) from e
         
     
-    def initiate_model_evaluation(self):
+    def initiate_model_evaluation(self) -> ModelEvaluationArtifact:
         try:
             trained_model_fie_path = self.model_trainer_artifact.trained_model_file_path
             trained_model_object = load_object(file_path=trained_model_fie_path)

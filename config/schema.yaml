@@ -3,15 +3,15 @@ columns:
   workclass: object
   fnlwgt: int64
   education: object
-  education-num: int64
-  marital-status: object
+  education_num: int64
+  marital_status: object
   occupation: object
   relationship: object
   race: object
   sex: object
-  capital-gain: int64
-  capital-loss: int64
-  hours-per-week: int64
+  capital_gain: int64
+  capital_loss: int64
+  hours_per_week: int64
   country: object
   salary: object
 
@@ -21,15 +21,15 @@ target_column: salary
 numerical_columns:
  - age
  - fnlwgt
- - education-num
- - capital-gain
- - capital-loss
- - hours-per-week
+ - education_num
+ - capital_gain
+ - capital_loss
+ - hours_per_week
 
 categorical_columns:
   - workclass
   - education
-  - marital-status
+  - marital_status
   - occupation
   - relationship
   - race
@@ -66,7 +66,7 @@ domain_value:
         - Preschool
         - 12th
         
-    marital-status:
+    marital_status:
         - Never-married
         - Married-civ-spouse
         - Divorced

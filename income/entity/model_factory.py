@@ -11,12 +11,7 @@ from collections import namedtuple
 from typing import List
 from income.logger import logging
 from sklearn.metrics import r2_score,mean_squared_error,accuracy_score
-GRID_SEARCH_KEY = 'grid_search'
-MODULE_KEY = 'module'
-CLASS_KEY = 'class'
-PARAM_KEY = 'params'
-MODEL_SELECTION_KEY = 'model_selection'
-SEARCH_PARAM_GRID_KEY = "search_param_grid"
+from income.constant import *
 
 InitializedModelDetail = namedtuple("InitializedModelDetail",
                                     ["model_serial_number", "model", "param_grid_search", "model_name"])
